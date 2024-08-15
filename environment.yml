@@ -1,0 +1,8 @@
+name: arithmetic_units
+channels:
+  - defaults
+dependencies:
+  - python=3.10
+  - pip=24.2
+  - pip:
+    - -r requirements.txt
