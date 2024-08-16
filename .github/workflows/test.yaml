@@ -13,6 +13,9 @@ on:
 jobs:
   cocotb-tests:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -el {0}
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -23,14 +26,13 @@ jobs:
     - name: Set up Conda
       uses: conda-incubator/setup-miniconda@v3
       with:
-        environment-file: environment.yml
         activate-environment: arithmetic_units
+        environment-file: environment.yml
+        auto-activate-base: false
 
     - name: Run pytest
       id: run-tests
-      run: |
-        conda activate arithmetic_units
-        pytest
+      run: pytest
       continue-on-error: true
 
     - name: Notify user on failure
