@@ -1,0 +1,39 @@
+# SPDX-FileCopyrightText: 2024 David Mallasén Quintana
+# SPDX-License-Identifier: LGPL-3.0-or-later
+# Source: https://github.com/davidmallasen/arithmetic_units
+
+name: Cocotb tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  cocotb-tests:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Conda
+      uses: conda-incubator/setup-miniconda@v3
+      with:
+        python-version: 3.10
+        environment-file: environment.yml
+        activate-environment: arithmetic_units
+
+    - name: Install Icarus Verilog
+      run: sudo apt-get update && sudo apt-get install -y iverilog
+
+    - name: Run pytest
+      id: run-tests
+      run: pytest
+      continue-on-error: true
+
+    - name: Notify user on failure
+      if: steps.run-tests.outcome == 'failure'
+      run: |
+        echo "Pytest has failed. \
+        Please check the logs and run 'pytest -rA -v' locally to get a more detailed output."
