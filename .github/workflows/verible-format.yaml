@@ -4,7 +4,11 @@
 
 name: Verible formatter check
 
-on: pull_request
+on:
+  push:
+    branches:
+      - main
+  pull_request:
 
 jobs:
   verible-format:

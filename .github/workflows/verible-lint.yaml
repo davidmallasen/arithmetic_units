@@ -4,7 +4,11 @@
 
 name: Verible linter check
 
-on: pull_request
+on:
+  push:
+    branches:
+      - main
+  pull_request:
 
 jobs:
   verible-lint:
