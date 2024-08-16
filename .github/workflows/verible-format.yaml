@@ -14,8 +14,8 @@ jobs:
       contents: read
       pull-requests: write
     steps:
-    - uses: actions/checkout@master
-    - uses: chipsalliance/verible-formatter-action@main
+    - uses: actions/checkout@v4
+    - uses: chipsalliance/verible-formatter-action@21a1f8c4f634bcea8ce0bc20792b8f95e818f74c
       with:
         verible_version: "v0.0-3752-g8b64887e"
         fail_on_formatting_suggestions: true
