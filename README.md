@@ -101,6 +101,12 @@ run:
 make verible-format
 ~~~
 
+To run the Verible linter run:
+
+~~~bash
+make verible-lint
+~~~
+
 ## Bibliography
 [1] J.-M. Muller et al., Handbook of Floating-Point Arithmetic. Cham: Springer International Publishing, 2018. doi: 10.1007/978-3-319-76526-6.
 

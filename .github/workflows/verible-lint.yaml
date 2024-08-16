@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: LGPL-3.0-or-later
 # Source: https://github.com/davidmallasen/arithmetic_units
 
-name: Verible formatter check
+name: Verible linter check
 
 on:
   push:
@@ -11,7 +11,7 @@ on:
   pull_request:
 
 jobs:
-  verible-format:
+  verible-lint:
     runs-on: ubuntu-latest
     permissions:
       checks: write
@@ -19,13 +19,8 @@ jobs:
       pull-requests: write
     steps:
     - uses: actions/checkout@v4
-    - uses: chipsalliance/verible-formatter-action@21a1f8c4f634bcea8ce0bc20792b8f95e818f74c
+    - uses: chipsalliance/verible-linter-action@0309299fa6ecd3db11135e9987d6de71de437616
       with:
         verible_version: "v0.0-3752-g8b64887e"
-        fail_on_formatting_suggestions: true
-        parameters: # These should be the same as in util/verible-format.py
-          --formal_parameters_indentation=indent
-          --named_parameter_indentation=indent
-          --named_port_indentation=indent
-          --port_declarations_indentation=indent
+        fail_on_error: true
         github_token: ${{ secrets.GITHUB_TOKEN }}

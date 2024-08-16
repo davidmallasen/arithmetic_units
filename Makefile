@@ -6,3 +6,8 @@
 .PHONY: verible-format
 verible-format:
 	find -name '*.sv*' | xargs python util/verible-format.py --inplace --files 2> /dev/zero
+
+# Run verible linting of hw files
+.PHONY: verible-lint
+verible-lint:
+	find -name '*.sv*' | xargs verible-verilog-lint

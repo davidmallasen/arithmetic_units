@@ -12,16 +12,16 @@
 // Delay: O(log N)
 
 module barrel_shifter #(
-  parameter N = 32,  // Width of the data (N > 0)
+  parameter int N = 32,  // Width of the data (N > 0)
   // Do not override the following parameter
-  parameter D_WIDTH = $clog2(N)  // Ceiling of log2(N)
+  parameter int D_WIDTH = $clog2(N)  // Ceiling of log2(N)
 ) (
   input  logic [      N-1:0] x,  // Input value to shift
   input  logic [D_WIDTH-1:0] d,  // Shift distance
   output logic [      N-1:0] z   // Output value
 );
 
-  logic [N-1:0] stage[D_WIDTH:0];  // Intermediate shifted values
+  logic [N-1:0] stage[D_WIDTH+1];  // Intermediate shifted values
 
   assign stage[0] = x;
 

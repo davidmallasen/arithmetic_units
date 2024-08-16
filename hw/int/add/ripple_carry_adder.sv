@@ -13,7 +13,7 @@
 // Delay: O(N)
 
 module ripple_carry_adder #(
-  parameter N = 32
+  parameter int N = 32
 ) (
   input  logic [N-1:0] x,    // First operand
   input  logic [N-1:0] y,    // Second operand
