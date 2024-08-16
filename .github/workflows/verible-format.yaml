@@ -4,8 +4,7 @@
 
 name: Verible formatter check
 
-on:
-  pull_request:
+on: pull_request
 
 jobs:
   verible-format:
