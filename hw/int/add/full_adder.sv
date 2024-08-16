@@ -13,7 +13,7 @@
 
 module full_adder (
   input  logic x,    // First operand
-  input  logic  y,    // Second operand
+  input  logic y,    // Second operand
   input  logic cin,  // Carry-in bit
   output logic s,    // Output sum
   output logic cout  // Carry-out bit
