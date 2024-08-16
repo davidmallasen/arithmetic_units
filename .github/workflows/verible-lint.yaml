@@ -1,0 +1,22 @@
+# SPDX-FileCopyrightText: 2024 David Mallasén Quintana
+# SPDX-License-Identifier: LGPL-3.0-or-later
+# Source: https://github.com/davidmallasen/arithmetic_units
+
+name: Verible linter check
+
+on: pull_request
+
+jobs:
+  verible-lint:
+    runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      contents: read
+      pull-requests: write
+    steps:
+    - uses: actions/checkout@v4
+    - uses: chipsalliance/verible-linter-action@0309299fa6ecd3db11135e9987d6de71de437616
+      with:
+        verible_version: "v0.0-3752-g8b64887e"
+        fail_on_error: true
+        github_token: ${{ secrets.GITHUB_TOKEN }}
