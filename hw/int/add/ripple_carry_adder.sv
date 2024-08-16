@@ -15,11 +15,11 @@
 module ripple_carry_adder #(
   parameter N = 32
 ) (
-  input  logic [N-1:0] x,  // First operand
-  input  logic [N-1:0] y,  // Second operand
-  input  logic cin,        // Carry-in bit
-  output logic [N-1:0] s,  // Output sum
-  output logic cout        // Carry-out bit
+  input  logic [N-1:0] x,    // First operand
+  input  logic [N-1:0] y,    // Second operand
+  input  logic         cin,  // Carry-in bit
+  output logic [N-1:0] s,    // Output sum
+  output logic         cout  // Carry-out bit
 );
 
   logic [N-1:0] sum;  // Intermediate sum

@@ -43,12 +43,39 @@ Tested in Ubuntu 22.04.
             source venv/bin/activate
             ~~~
 
-2. Install the [Icarus Verilog](https://steveicarus.github.io/iverilog/) simulator. In
-Ubuntu, you can do this with:
+2. Install the [Icarus Verilog](https://steveicarus.github.io/iverilog/) simulator. We
+currently use version 11.0. In Ubuntu, you can do this with:
 
     ~~~bash
     sudo apt install iverilog
     ~~~
+
+3. Install [Verible](https://chipsalliance.github.io/verible) for SystemVerilog linting
+and formatting. We currently use version `v0.0-3752-g8b64887e`. In Ubuntu, you can do
+this with:
+
+    ~~~bash
+    export VERIBLE_VERSION=v0.0-3752-g8b64887e
+    wget https:wget https://github.com/chipsalliance/verible/releases/download/${VERIBLE_VERSION}/verible-${VERIBLE_VERSION}-linux-static-x86_64.tar.gz
+    tar -xf verible-${VERIBLE_VERSION}-linux-static-x86_64.tar.gz
+    ~~~
+
+    Then you can install it to your preferred location. For example, to install it in
+    `/home/$USER/tools`, run:
+
+    ~~~bash
+    mkdir -p /home/$USER/tools/verible/${VERIBLE_VERSION}/
+    mv verible-${VERIBLE_VERSION}/* /home/$USER/tools/verible/${VERIBLE_VERSION}/
+    ~~~
+
+    You can remove the previous download from the current path with:
+
+    ~~~bash
+    rm -rf verible-${VERIBLE_VERSION}*
+    ~~~
+
+    Finally, add the `/home/$USER/tools/verible/${VERIBLE_VERSION}/bin` to your `PATH`
+    environment variable.
 
 ## Running the Tests
 The test setup is based on [cocotb](https://www.cocotb.org/) and [pytest](https://docs.pytest.org/en/stable/). You can find all the tests in the `test` folder.
@@ -63,6 +90,15 @@ If you want the detailed output, run:
 
 ~~~bash
 pytest -rA -v
+~~~
+
+## Running SystemVerilog Formatting and Linting
+When developing RTL code for this project, you should run Verible to check that it's
+formatted correctly and that it follows the best practices. To run the Verible formatter
+run:
+
+~~~bash
+make verible-format
 ~~~
 
 ## Bibliography
