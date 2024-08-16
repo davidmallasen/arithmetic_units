@@ -4,14 +4,12 @@
 
 name: Verible formatter check
 
-on: pull_request
+on: [push, pull_request]
 
 jobs:
   verible-format:
     runs-on: ubuntu-latest
     permissions:
-      checks: write
-      contents: read
       pull-requests: write
     steps:
     - uses: actions/checkout@master
