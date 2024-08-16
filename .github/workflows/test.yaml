@@ -16,15 +16,15 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+    
+    - name: Install Icarus Verilog
+      run: sudo apt-get update && sudo apt-get install -y iverilog
 
     - name: Set up Conda
       uses: conda-incubator/setup-miniconda@v3
       with:
         environment-file: environment.yml
         activate-environment: arithmetic_units
-
-    - name: Install Icarus Verilog
-      run: sudo apt-get update && sudo apt-get install -y iverilog
 
     - name: Run pytest
       id: run-tests
@@ -36,3 +36,4 @@ jobs:
       run: |
         echo "Pytest has failed. \
         Please check the logs and run 'pytest -rA -v' locally to get a more detailed output."
+        exit 1
