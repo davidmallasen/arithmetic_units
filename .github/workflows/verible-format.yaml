@@ -20,3 +20,4 @@ jobs:
           --named_parameter_indentation=indent
           --named_port_indentation=indent
           --port_declarations_indentation=indent
+        github_token: ${{ secrets.GITHUB_TOKEN }}
