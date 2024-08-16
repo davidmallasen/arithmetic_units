@@ -12,7 +12,7 @@
 // Delay: O(log N)
 
 module barrel_shifter #(
-  parameter N = 32,  // Width of the data (N > 0)
+  parameter int N = 32,  // Width of the data (N > 0)
   // Do not override the following parameter
   parameter int D_WIDTH = $clog2(N)  // Ceiling of log2(N)
 ) (
