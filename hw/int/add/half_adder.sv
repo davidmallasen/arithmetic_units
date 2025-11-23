@@ -10,10 +10,10 @@
 // Delay: O(1)
 
 module half_adder (
-  input  logic a, // First operand
-  input  logic b, // Second operand
-  output logic s, // Sum output
-  output logic cout // Carry-out output
+  input  logic a,    // First operand
+  input  logic b,    // Second operand
+  output logic s,    // Sum output
+  output logic cout  // Carry-out output
 );
 
   assign s = a ^ b;
