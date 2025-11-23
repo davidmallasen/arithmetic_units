@@ -51,11 +51,11 @@ currently use version 11.0. In Ubuntu, you can do this with:
     ~~~
 
 3. Install [Verible](https://chipsalliance.github.io/verible) for SystemVerilog linting
-and formatting. We currently use version `v0.0-3752-g8b64887e`. In Ubuntu, you can do
+and formatting. We currently use version `v0.0-4023-gc1271a00`. In Ubuntu, you can do
 this with:
 
     ~~~bash
-    export VERIBLE_VERSION=v0.0-3752-g8b64887e
+    export VERIBLE_VERSION=v0.0-4023-gc1271a00
     wget https:wget https://github.com/chipsalliance/verible/releases/download/${VERIBLE_VERSION}/verible-${VERIBLE_VERSION}-linux-static-x86_64.tar.gz
     tar -xf verible-${VERIBLE_VERSION}-linux-static-x86_64.tar.gz
     ~~~

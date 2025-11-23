@@ -19,9 +19,9 @@ jobs:
       pull-requests: write
     steps:
     - uses: actions/checkout@v4
-    - uses: chipsalliance/verible-formatter-action@21a1f8c4f634bcea8ce0bc20792b8f95e818f74c
+    - uses: chipsalliance/verible-formatter-action@main
       with:
-        verible_version: "v0.0-3752-g8b64887e"
+        verible_version: "v0.0-4023-gc1271a00"
         fail_on_formatting_suggestions: true
         parameters: # These should be the same as in util/verible-format.py
           --formal_parameters_indentation=indent

@@ -19,8 +19,8 @@ jobs:
       pull-requests: write
     steps:
     - uses: actions/checkout@v4
-    - uses: chipsalliance/verible-linter-action@0309299fa6ecd3db11135e9987d6de71de437616
+    - uses: chipsalliance/verible-linter-action@main
       with:
-        verible_version: "v0.0-3752-g8b64887e"
+        verible_version: "v0.0-4023-gc1271a00"
         fail_on_error: true
         github_token: ${{ secrets.GITHUB_TOKEN }}
