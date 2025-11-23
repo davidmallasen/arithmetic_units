@@ -10,6 +10,8 @@ import cocotb
 from cocotb.runner import get_runner
 from cocotb.triggers import Timer
 
+from test.test_utils.core_files import get_core_files
+
 
 @cocotb.test()
 async def targeted_test(dut):
@@ -96,8 +98,9 @@ def test_barrel_shifter_runner():
     sim = os.getenv("SIM", "icarus")
 
     # Get the path to the sources
-    proj_path = Path(__file__).resolve().parent.parent.parent
-    sources = [proj_path / "hw" / "common" / "barrel_shifter.sv"]
+    proj_path = Path(__file__).resolve().parent.parent.parent.parent
+    core = "davidmallasen:arithmetic_units:barrel_shifter:1.0.0"
+    sources, includes = get_core_files(proj_path, core)
 
     # Set the parameters of the design
     parameters = {
@@ -109,6 +112,7 @@ def test_barrel_shifter_runner():
     # Build the HDL using the design sources and the top-level module
     runner.build(
         sources=sources,
+        includes=includes,
         parameters=parameters,
         hdl_toplevel="barrel_shifter",
         always=True,
@@ -116,7 +120,10 @@ def test_barrel_shifter_runner():
         timescale=("1ns", "1ps"),
     )
     # Run the test using the python test module
-    runner.test(hdl_toplevel="barrel_shifter", test_module="test_barrel_shifter")
+    runner.test(
+        hdl_toplevel="barrel_shifter",
+        test_module=__name__,
+    )
 
 
 if __name__ == "__main__":

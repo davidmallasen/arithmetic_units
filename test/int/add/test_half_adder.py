@@ -9,6 +9,8 @@ import cocotb
 from cocotb.runner import get_runner
 from cocotb.triggers import Timer
 
+from test.test_utils.core_files import get_core_files
+
 
 @cocotb.test()
 async def exhaustive_test(dut):
@@ -53,9 +55,8 @@ def test_half_adder_runner():
 
     # Get the path to the sources
     proj_path = Path(__file__).resolve().parent.parent.parent.parent
-    sources = [
-        proj_path / "hw" / "int" / "add" / "half_adder.sv",
-    ]
+    core = "davidmallasen:arithmetic_units:half_adder:1.0.0"
+    sources, includes = get_core_files(proj_path, core)
 
     # Set the parameters of the design
     parameters = {}
@@ -65,6 +66,7 @@ def test_half_adder_runner():
     # Build the HDL using the design sources and the top-level module
     runner.build(
         sources=sources,
+        includes=includes,
         parameters=parameters,
         hdl_toplevel="half_adder",
         always=True,
@@ -72,7 +74,10 @@ def test_half_adder_runner():
         timescale=("1ns", "1ps"),
     )
     # Run the test using the python test module
-    runner.test(hdl_toplevel="half_adder", test_module="test_half_adder")
+    runner.test(
+        hdl_toplevel="half_adder",
+        test_module=__name__,
+    )
 
 
 if __name__ == "__main__":

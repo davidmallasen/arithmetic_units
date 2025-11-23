@@ -2,6 +2,11 @@
 # SPDX-License-Identifier: LGPL-3.0-or-later
 # Source: https://github.com/davidmallasen/arithmetic_units
 
+# Run all tests
+.PHONY: test
+test:
+	pytest
+
 # Run verible formatting of hw files
 .PHONY: verible-format
 verible-format:

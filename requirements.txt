@@ -7,6 +7,8 @@ click==8.1.7
 cocotb==1.9.0
 exceptiongroup==1.2.2
 find_libpython==0.4.0
+fusesoc==2.4.5
+edalize==0.6.3
 iniconfig==2.0.0
 Jinja2==3.1.4
 license-expression==30.3.1
