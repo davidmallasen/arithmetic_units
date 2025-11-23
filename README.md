@@ -8,7 +8,7 @@ Source: https://github.com/davidmallasen/arithmetic_units
 Collection of arithmetic units written in SystemVerilog.
 
 ## Setup
-Tested in Ubuntu 22.04.
+Tested in Ubuntu 22.04 and 24.04.
 
 1. Set up the python environment using one of (a) Miniconda OR (b) pip:
     - (a) Miniconda
@@ -108,7 +108,8 @@ make verible-lint
 ~~~
 
 ## Bibliography
-[1] J.-M. Muller et al., Handbook of Floating-Point Arithmetic. Cham: Springer International Publishing, 2018. doi: 10.1007/978-3-319-76526-6.
+[1] M. D. Ercegovac and T. Lang, Digital Arithmetic. 2003. doi: 10.1016/B978-1-55860-798-9.X5000-3.
+[2] J.-M. Muller et al., Handbook of Floating-Point Arithmetic. Cham: Springer International Publishing, 2018. doi: 10.1007/978-3-319-76526-6.
 
 ## License
 
