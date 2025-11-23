@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: CERN-OHL-W-2.0+
 // Source: https://github.com/davidmallasen/arithmetic_units
 //
-// Ripple-carry adder
+// Carry-ripple adder
 //
 // Description: Combinational circuit that takes two N-bit numbers, x
 // and y, and a carry-in bit, cin, and outputs an N-bit sum, s, and a
@@ -12,7 +12,7 @@
 // Area: O(N)
 // Delay: O(N)
 
-module ripple_carry_adder #(
+module carry_ripple_adder #(
   parameter int N = 32
 ) (
   input  logic [N-1:0] x,    // First operand

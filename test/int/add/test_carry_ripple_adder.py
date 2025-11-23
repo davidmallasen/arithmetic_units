@@ -26,7 +26,7 @@ def compute_expected_cout(x_val, y_val, cin_val, N):
 @cocotb.test()
 async def targeted_test(dut):
     """
-    Test the ripple-carry adder with specific input values and carry-in.
+    Test the carry-ripple adder with specific input values and carry-in.
     """
 
     N = dut.N.value  # Get the width of the data
@@ -74,7 +74,7 @@ async def targeted_test(dut):
 
 @cocotb.test()
 async def random_test(dut):
-    """Test the ripple-carry adder with random input combinations."""
+    """Test the carry-ripple adder with random input combinations."""
 
     num_tests = 100  # Number of random tests to run
 
@@ -114,7 +114,7 @@ async def random_test(dut):
         )
 
 
-def test_ripple_carry_adder_runner():
+def test_carry_ripple_adder_runner():
     """Run the test using the Cocotb test runner."""
 
     # Get simulator from the environment
@@ -123,7 +123,7 @@ def test_ripple_carry_adder_runner():
     # Get the path to the sources
     proj_path = Path(__file__).resolve().parent.parent.parent.parent
     sources = [
-        proj_path / "hw" / "int" / "add" / "ripple_carry_adder.sv",
+        proj_path / "hw" / "int" / "add" / "carry_ripple_adder.sv",
         proj_path / "hw" / "int" / "add" / "full_adder.sv",
     ]
 
@@ -138,16 +138,16 @@ def test_ripple_carry_adder_runner():
     runner.build(
         sources=sources,
         parameters=parameters,
-        hdl_toplevel="ripple_carry_adder",
+        hdl_toplevel="carry_ripple_adder",
         always=True,
         build_dir=proj_path / "build" / "test" / sim,
         timescale=("1ns", "1ps"),
     )
     # Run the test using the python test module
     runner.test(
-        hdl_toplevel="ripple_carry_adder", test_module="test_ripple_carry_adder"
+        hdl_toplevel="carry_ripple_adder", test_module="test_carry_ripple_adder"
     )
 
 
 if __name__ == "__main__":
-    test_ripple_carry_adder_runner()
+    test_carry_ripple_adder_runner()
