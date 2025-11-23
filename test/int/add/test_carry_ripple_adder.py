@@ -125,6 +125,7 @@ def test_carry_ripple_adder_runner():
     sources = [
         proj_path / "hw" / "int" / "add" / "carry_ripple_adder.sv",
         proj_path / "hw" / "int" / "add" / "full_adder.sv",
+        proj_path / "hw" / "int" / "add" / "half_adder.sv",
     ]
 
     # Set the parameters of the design
