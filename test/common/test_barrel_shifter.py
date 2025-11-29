@@ -7,7 +7,7 @@ import random
 from pathlib import Path
 
 import cocotb
-from cocotb.runner import get_runner
+from cocotb_tools.runner import get_runner
 from cocotb.triggers import Timer
 
 from test.test_utils.core_files import get_core_files
@@ -20,7 +20,7 @@ async def targeted_test(dut):
     values.
     """
 
-    N = dut.N.value  # Get the width of the data
+    N = int(dut.N.value)  # Get the width of the data
 
     # List of test cases with specific input values and shift distances
     test_cases = [
@@ -61,8 +61,8 @@ async def random_test(dut):
 
     num_tests = 100  # Number of random tests to run
 
-    N = dut.N.value
-    D_WIDTH = dut.D_WIDTH.value
+    N = int(dut.N.value)
+    D_WIDTH = int(dut.D_WIDTH.value)
 
     for _ in range(num_tests):
         # Generate random input values

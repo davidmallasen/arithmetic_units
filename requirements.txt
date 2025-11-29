@@ -4,7 +4,7 @@ black==24.8.0
 boolean.py==4.0
 chardet==5.2.0
 click==8.1.7
-cocotb==1.9.0
+cocotb==2.0.1
 exceptiongroup==1.2.2
 find_libpython==0.4.0
 fusesoc==2.4.5
