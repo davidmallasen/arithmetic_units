@@ -23,7 +23,7 @@
 
 module carry_skip_adder #(
   parameter int N = 32,
-  parameter int M = 4  // Number of blocks
+  parameter int M = 4    // Number of blocks
 ) (
   input  logic [N-1:0] x,    // First operand
   input  logic [N-1:0] y,    // Second operand
@@ -32,9 +32,9 @@ module carry_skip_adder #(
   output logic         cout  // Carry-out bit
 );
 
-  localparam int BLOCK_SIZE = N / M;  // Size of each block
+  localparam int BlockSize = N / M;  // Size of each block
 
-  logic [M:0] block_carry;  // Carry between blocks
+  logic [  M:0] block_carry;  // Carry between blocks
   logic [M-1:0] block_propagate;  // Propagate signal for each block
 
   // Assign the carry-in of the first block
@@ -44,27 +44,27 @@ module carry_skip_adder #(
     genvar i;
     for (i = 0; i < M; i++) begin : gen_blocks
       // Start and end bits for the current block
-      localparam int I_START = i * BLOCK_SIZE;
-      localparam int I_END = (i + 1) * BLOCK_SIZE - 1;
+      localparam int Istart = i * BlockSize;
+      localparam int Iend = (i + 1) * BlockSize - 1;
 
       logic block_cout;  // Carry-out of the ripple-carry adder
 
       // Instantiate a ripple-carry adder for each block
       carry_ripple_adder #(
-        .N(BLOCK_SIZE)
+        .N(BlockSize)
       ) rca_i (
-        .x(x[I_END:I_START]),
-        .y(y[I_END:I_START]),
+        .x(x[Iend:Istart]),
+        .y(y[Iend:Istart]),
         .cin(block_carry[i]),
-        .s(s[I_END:I_START]),
+        .s(s[Iend:Istart]),
         .cout(block_cout)
       );
 
       // Calculate the block's propagate signal
-      assign block_propagate[i] = &((x[I_END:I_START] ^ y[I_END:I_START]));
+      assign block_propagate[i] = &((x[Iend:Istart] ^ y[Iend:Istart]));
 
       // Select the carry-out of the block
-      assign block_carry[i+1] = (block_propagate[i]) ? block_carry[i] : block_cout;
+      assign block_carry[i+1]   = (block_propagate[i]) ? block_carry[i] : block_cout;
     end
   endgenerate
 
