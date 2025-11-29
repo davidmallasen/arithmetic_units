@@ -31,11 +31,7 @@ def get_core_files(proj_path, core_name):
     except ValueError:
         raise ValueError(f"Invalid VLNV: {core_name}")
 
-    flags = {
-        "tool": "icarus", 
-        "target": "default", 
-        "is_toplevel": True 
-    }
+    flags = {"tool": "icarus", "target": "default", "is_toplevel": True}
 
     resolved_cores = cm.get_depends(top_vlnv, flags)
     top_core = cm.get_core(top_vlnv)
@@ -59,7 +55,7 @@ def get_core_files(proj_path, core_name):
                 continue
 
             abs_path = os.path.join(core.core_root, rel_path)
-            
+
             if file_data.get("is_include_file"):
                 inc_dir = os.path.dirname(abs_path)
                 if inc_dir not in inc_dirs:
