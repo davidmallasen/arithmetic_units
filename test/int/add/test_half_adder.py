@@ -6,7 +6,7 @@ import os
 from pathlib import Path
 
 import cocotb
-from cocotb.runner import get_runner
+from cocotb_tools.runner import get_runner
 from cocotb.triggers import Timer
 
 from test.test_utils.core_files import get_core_files

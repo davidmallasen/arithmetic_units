@@ -7,7 +7,7 @@ import random
 from pathlib import Path
 
 import cocotb
-from cocotb.runner import get_runner
+from cocotb_tools.runner import get_runner
 from cocotb.triggers import Timer
 
 from test.test_utils.core_files import get_core_files
@@ -31,7 +31,7 @@ async def targeted_test(dut):
     Test the carry-skip adder with specific input values and carry-in.
     """
 
-    N = dut.N.value  # Get the width of the data
+    N = int(dut.N.value)  # Get the width of the data
 
     # List of test cases with specific input values and carry-in
     test_cases = [
@@ -80,7 +80,7 @@ async def random_test(dut):
 
     num_tests = 100  # Number of random tests to run
 
-    N = dut.N.value
+    N = int(dut.N.value)
 
     for _ in range(num_tests):
         x_val = random.randint(0, (1 << N) - 1)  # Random N-bit value
