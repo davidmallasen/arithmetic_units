@@ -8,43 +8,24 @@ Source: https://github.com/davidmallasen/arithmetic_units
 Collection of arithmetic units written in SystemVerilog.
 
 ## Setup
-Tested in Ubuntu 22.04 and 24.04.
+Tested in Ubuntu 24.04.
 
-1. Set up the python environment using one of (a) Miniconda OR (b) pip:
-    - (a) Miniconda
-        1. Install [Miniconda](https://docs.anaconda.com/miniconda/).
-        2. Create the environment (only the first time):
+1. Set up the python environment:
+    1. Install [Miniconda](https://docs.anaconda.com/miniconda/).
+    2. Create the environment (only the first time):
 
-            ~~~bash
-            conda env create -f environment.yml
-            ~~~
+        ~~~bash
+        conda env create -f environment.yml
+        ~~~
 
-        3. Activate the environment (every time you open a new terminal):
+    3. Activate the environment (every time you open a new terminal):
 
-            ~~~bash
-            conda activate arithmetic_units
-            ~~~
-
-    - (b) pip
-        1. Check that you have the python and pip versions that are required for this project. You can find them in the `environment.yml` file. If you are unsure about this, follow the instructions for Miniconda.
-
-        2. Create the environment (only the first time):
-
-            ~~~bash
-            python -m venv venv
-            source venv/bin/activate
-            pip install --upgrade pip
-            pip install -r requirements.txt
-            ~~~
-
-        3. Activate the environment (every time you open a new terminal):
-
-            ~~~bash
-            source venv/bin/activate
-            ~~~
+        ~~~bash
+        conda activate arithmetic_units
+        ~~~
 
 2. Install the [Icarus Verilog](https://steveicarus.github.io/iverilog/) simulator. We
-currently use version 11.0. In Ubuntu, you can do this with:
+currently use version 12.0. In Ubuntu 24.04, you can do this with:
 
     ~~~bash
     sudo apt install iverilog
@@ -83,7 +64,7 @@ The test setup is based on [cocotb](https://www.cocotb.org/) and [pytest](https:
 To run the tests, run:
 
 ~~~bash
-pytest
+make test
 ~~~
 
 If you want the detailed output, run:
@@ -92,16 +73,15 @@ If you want the detailed output, run:
 pytest -rA -v
 ~~~
 
-## Running SystemVerilog Formatting and Linting
-When developing RTL code for this project, you should run Verible to check that it's
-formatted correctly and that it follows the best practices. To run the Verible formatter
-run:
+## Running Formatting and Linting
+
+To format your code run:
 
 ~~~bash
-make verible-format
+make format
 ~~~
 
-To run the Verible linter run:
+To run the Verible linter for SystemVerilog run:
 
 ~~~bash
 make verible-lint
@@ -121,3 +101,11 @@ The software (i.e. all code inside the `test` directory) is licensed under the
 [GNU Lesser General Public License v3.0](https://www.gnu.org/licenses/lgpl-3.0.en.html)
 or later, unless specified otherwise. The license is also included in this repository in
 the `LICENSES` directory. SPDX-License-Identifier: LGPL-3.0-or-later
+
+This project uses the REUSE tool to manage licenses. For more information, please
+refer to https://reuse.software/. To check the compliance of this repository with the
+REUSE guidelines, run:
+
+~~~bash
+reuse lint
+~~~
