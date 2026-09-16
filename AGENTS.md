@@ -26,9 +26,10 @@ See `README.md` for full environment setup (conda env `arithmetic_units`, iveril
 | `make test` | Run all tests (`pytest test/<path>.py` for one unit) |
 | `make format` | Format SV (verible) + Python (black) |
 | `make sv-lint` | Lint SystemVerilog |
+| `make clean` | Remove build artifacts and Python caches |
 | `reuse lint` | Check license compliance |
 
-No `make clean`: delete `build/` instead. Tests default to `SIM=icarus`.
+Tests default to `SIM=icarus`.
 
 ## Conventions
 
