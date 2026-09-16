@@ -29,7 +29,10 @@ See `README.md` for full environment setup (conda env `arithmetic_units`, iveril
 | `make clean` | Remove build artifacts and Python caches |
 | `reuse lint` | Check license compliance |
 
-Tests default to `SIM=icarus`.
+Simulations run through FuseSoC's Flow API: each `.core` defines a `sim` target
+(`flow: sim`) that sets the simulator (`flow_options.tool`, icarus by default),
+the cocotb test module (`cocotb_module`) and the test parameters. Override the
+simulator with `--tool=<sim>` as a backend argument.
 
 ## Conventions
 
@@ -44,9 +47,12 @@ Tests default to `SIM=icarus`.
   `Area: O(...)` / `Delay: O(...)`; `logic` types, commented ports, named connections;
   `parameter int N = ...` + `generate` blocks.
 - **Tests**: copy an existing `test_*.py` — cocotb tests drive the DUT with
-  `await Timer(1, units="ns")`; runner resolves sources via
-  `test.test_utils.core_files.get_core_files` and passes parameters as a dict
-  (e.g. `{"N": 32, "M": 4}`). Keep `.core` files consistent with files on disk.
+  `await Timer(1, units="ns")`; the runner calls
+  `test.test_utils.sim.run_sim` with the core VLNV and asserts no test failed.
+  Test parameters live in the core's `sim` target (`parameters: [N=8]`) and are
+  declared top-level (`datatype: int`, `paramtype: vlogparam`); override them
+  per test with `run_sim(core, parameters={"N": N})` (e.g. under
+  `pytest.mark.parametrize`). Keep `.core` files consistent with files on disk.
 
 ## Adding a unit
 

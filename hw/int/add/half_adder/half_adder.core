@@ -17,3 +17,13 @@ targets:
     filesets:
       - rtl
     toplevel: half_adder
+
+  sim:
+    <<: *default
+    flow: sim
+    flow_options:
+      tool: icarus
+      timescale: "1ns/1ps"
+      iverilog_options:
+        - "-g2012"
+      cocotb_module: test.int.add.test_half_adder
