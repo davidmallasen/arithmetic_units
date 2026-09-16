@@ -25,3 +25,9 @@ python-format:
 # Run formatting for all files
 .PHONY: format
 format: sv-format python-format
+
+# Remove build artifacts and cache files
+.PHONY: clean
+clean:
+	rm -rf build/
+	find . -type d \( -name '__pycache__' -o -name '.pytest_cache' \) -prune -exec rm -rf {} +
