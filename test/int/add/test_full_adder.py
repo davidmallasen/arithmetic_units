@@ -2,14 +2,10 @@
 # SPDX-License-Identifier: LGPL-3.0-or-later
 # Source: https://github.com/davidmallasen/arithmetic_units
 
-import os
-from pathlib import Path
-
 import cocotb
-from cocotb_tools.runner import get_runner
 from cocotb.triggers import Timer
 
-from test.test_utils.core_files import get_core_files
+from test.test_utils.sim import run_sim
 
 
 @cocotb.test()
@@ -53,36 +49,12 @@ async def exhaustive_test(dut):
 
 
 def test_full_adder_runner():
-    """Run the test using the Cocotb test runner."""
+    """Run the test using the FuseSoC cocotb flow."""
 
-    # Get simulator from the environment
-    sim = os.getenv("SIM", "icarus")
-
-    # Get the path to the sources
-    proj_path = Path(__file__).resolve().parent.parent.parent.parent
     core = "davidmallasen:arithmetic_units:full_adder:1.0.0"
-    sources, includes = get_core_files(proj_path, core)
+    num_tests, num_failed = run_sim(core)
 
-    # Set the parameters of the design
-    parameters = {}
-
-    # Instantiate the test runner based on the simulator
-    runner = get_runner(sim)
-    # Build the HDL using the design sources and the top-level module
-    runner.build(
-        sources=sources,
-        includes=includes,
-        parameters=parameters,
-        hdl_toplevel="full_adder",
-        always=True,
-        build_dir=proj_path / "build" / "test" / sim,
-        timescale=("1ns", "1ps"),
-    )
-    # Run the test using the python test module
-    runner.test(
-        hdl_toplevel="full_adder",
-        test_module=__name__,
-    )
+    assert num_failed == 0, f"Failed {num_failed} of {num_tests} tests."
 
 
 if __name__ == "__main__":

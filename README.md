@@ -59,7 +59,7 @@ this with:
     environment variable.
 
 ## Running the Tests
-The test setup is based on [cocotb](https://www.cocotb.org/) and [pytest](https://docs.pytest.org/en/stable/). You can find all the tests in the `test` folder.
+The test setup is based on [cocotb](https://www.cocotb.org/), [pytest](https://docs.pytest.org/en/stable/) and [FuseSoC](https://fusesoc.readthedocs.io/). You can find all the tests in the `test` folder.
 
 To run the tests, run:
 
@@ -71,6 +71,14 @@ If you want the detailed output, run:
 
 ~~~bash
 pytest -rA -v
+~~~
+
+Each core defines a `sim` target that sets the simulator, the cocotb test
+module and the test parameters. This means you can also run the simulation of
+a single unit directly through FuseSoC, without pytest:
+
+~~~bash
+PYTHONPATH=$PWD fusesoc run --target=sim davidmallasen:arithmetic_units:full_adder:1.0.0
 ~~~
 
 ## Running Formatting and Linting
