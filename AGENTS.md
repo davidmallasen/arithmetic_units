@@ -1,3 +1,11 @@
+<!--
+SPDX-FileCopyrightText: 2026 EPFL
+SPDX-License-Identifier: LGPL-3.0-or-later
+Source: https://github.com/davidmallasen/arithmetic_units
+
+Author: David Mallasén
+-->
+
 # AGENTS.md
 
 Instructions for AI coding agents working in this repository. Keep answers and
@@ -24,8 +32,10 @@ No `make clean`: delete `build/` instead. Tests default to `SIM=icarus`.
 
 ## Conventions
 
-- **SPDX header first line of every file** (use `#` for Python/Make/YAML, `//` for SV):
-  `hw/` → `CERN-OHL-W-2.0+`; `test/`, `util/`, root → `LGPL-3.0-or-later`; copyright `David Mallasén Quintana`.
+- **SPDX header first line of every file**
+  - `hw/`: `CERN-OHL-W-2.0+`
+  - `test/`, `util/`, root: `LGPL-3.0-or-later`
+  - Add comment with author and description after the SPDX header.
 - **Cores**: VLNV `davidmallasen:arithmetic_units:<unit>:1.0.0`; `.core` starts with `CAPI=2:`,
   `rtl` fileset with `file_type: systemVerilogSource`, `default` target sets `toplevel`.
   Dependencies: `depend: - ~davidmallasen:arithmetic_units:<dep>:1.0.0`.
