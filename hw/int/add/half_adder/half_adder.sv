@@ -3,11 +3,6 @@
 // Source: https://github.com/davidmallasen/arithmetic_units
 //
 // Half adder
-//
-// Description: Combinational circuit that adds two 1-bit numbers.
-//
-// Area: O(1)
-// Delay: O(1)
 
 module half_adder (
   input  logic a,    // First operand
@@ -16,7 +11,9 @@ module half_adder (
   output logic cout  // Carry-out output
 );
 
+  // Sum: one when exactly one operand is one
   assign s = a ^ b;
+  // Carry-out: one when both operands are one
   assign cout = a & b;
 
 endmodule

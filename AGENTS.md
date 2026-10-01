@@ -37,9 +37,10 @@ simulator with `--tool=<sim>` as a backend argument.
 ## Conventions
 
 - **SPDX header first line of every file**
-  - `hw/`: `CERN-OHL-W-2.0+`
-  - `test/`, `util/`, root: `LGPL-3.0-or-later`
-  - Add comment with author and description after the SPDX header.
+    - `hw/`: `CERN-OHL-W-2.0+`
+    - `test/`, `util/`, root: `LGPL-3.0-or-later`
+    - `docs/`: `CC-BY-SA-4.0`
+    - Add comment with author and description after the SPDX header.
 - **Cores**: VLNV `davidmallasen:arithmetic_units:<unit>:1.0.0`; `.core` starts with `CAPI=2:`,
   `rtl` fileset with `file_type: systemVerilogSource`, `default` target sets `toplevel`.
   Dependencies: `depend: - ~davidmallasen:arithmetic_units:<dep>:1.0.0`.
@@ -53,6 +54,9 @@ simulator with `--tool=<sim>` as a backend argument.
   declared top-level (`datatype: int`, `paramtype: vlogparam`); override them
   per test with `run_sim(core, parameters={"N": N})` (e.g. under
   `pytest.mark.parametrize`). Keep `.core` files consistent with files on disk.
+- **Docs**: `docs/` mirrors `hw/` — an `index.md` per directory giving context;
+  leaf directories hold the module's documentation plus its diagrams. Explanations of the
+  architecture go in the docs; whatever helps to understand the code goes in comments in the `.sv`.
 
 ## Adding a unit
 

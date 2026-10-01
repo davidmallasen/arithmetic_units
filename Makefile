@@ -10,12 +10,12 @@ test:
 # Run verible formatting of SystemVerilog files
 .PHONY: sv-format
 sv-format:
-	find -name '*.sv*' | xargs python util/verible-format.py --inplace --files 2> /dev/zero
+	find -name '*.sv' -o -name '*.svh' | xargs python util/verible-format.py --inplace --files 2> /dev/zero
 
 # Run verible linting of SystemVerilog files
 .PHONY: sv-lint
 sv-lint:
-	find -name '*.sv*' | xargs verible-verilog-lint
+	find -name '*.sv' -o -name '*.svh' | xargs verible-verilog-lint
 
 # Run black formatting of python files
 .PHONY: python-format
