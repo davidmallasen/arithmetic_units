@@ -21,8 +21,6 @@ of the problem size.
 A chain of $\lceil \log_2 N \rceil$ stages, one per bit of `d`. Stage
 $i$ conditionally shifts its input left by $2^i$.
 
-![Barrel shifter architecture](barrel_shifter.drawio.svg)
-
 ## Complexity
 
 - **Area: $O(N \log N)$**
@@ -53,23 +51,23 @@ because shifts by $2^i$ and $2^j$ commute. Each stage $i$ is therefore
 a 2:1 multiplexer: if $d_i$ is set, shift by $2^i$; otherwise pass
 through. The number of stages is $\lceil \log_2 N \rceil$. Exactly
 enough to represent any distance up to $N-1$, which is the largest
-meaningful shift for an N-bit value.
+meaningful shift for an N-bit value. Each stage contributes at most one
+conditional shift, and the composition of the selected shifts equals
+the requested distance.
 
 ### Worked example ($N = 8$)
 
-Take $x = 8'b00000001$ and $d = 3'b101$ ($= 5$). The three stages
+Take $x = 8'b00001101$ and $d = 3'b101$ ($= 5$). The three stages
 shift by 1, 2, and 4:
 
 | Stage | $d_i$ | Shift | Value |
 | --- | --- | --- | --- |
-| 0 | — | — | `00000001` |
-| 1 | 1 | $\ll 1$ | `00000010` |
-| 2 | 0 | — | `00000010` |
-| 3 | 1 | $\ll 4$ | `00100000` |
+| 0 | — | — | `00001101` |
+| 1 | 1 | $\ll 1$ | `00011010` |
+| 2 | 0 | — | `00011010` |
+| 3 | 1 | $\ll 4$ | `10100000` |
 
-Result: $z = 32 = 1 \ll 5$. Each stage contributes at most one
-conditional shift, and the composition of the selected shifts equals
-the requested distance.
+Result: $z = 8'b10100000$.
 
 ### Shifts that exceed the width
 
