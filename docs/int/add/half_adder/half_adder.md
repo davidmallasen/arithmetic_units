@@ -18,6 +18,8 @@ decomposition of addition.
 
 Two gates: an XOR producing the sum and an AND producing the carry-out.
 
+![Half adder architecture](half_adder.drawio.png)
+
 ## Complexity
 
 - **Area: $O(1)$**

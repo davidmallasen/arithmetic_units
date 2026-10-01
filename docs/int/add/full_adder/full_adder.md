@@ -22,7 +22,7 @@ generate/propagate pair of the operands and the second adds the carry-in
 to the propagate signal. The OR merges the two ways a carry can be
 produced.
 
-![Full adder schematic](full_adder.drawio.svg)
+![Full adder schematic](full_adder.drawio.png)
 
 The decomposition into two half adders is a *structural* choice, not
 the only possible one: a flat implementation of the same equations
