@@ -22,7 +22,7 @@ It contains N [`full_adder`](../full_adder/full_adder.md) instances in a
 ripple chain: stage $i$'s carry-in is stage $i-1$'s carry-out, and stage
 0 takes the module's input carry instead.
 
-![Carry-ripple adder architecture](carry_ripple_adder.drawio.svg)
+![Carry-ripple adder architecture](carry_ripple_adder.drawio.png)
 
 ## Complexity
 
