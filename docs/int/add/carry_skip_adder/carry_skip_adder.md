@@ -27,7 +27,7 @@ optimize the delay. The carry-out of a block is selected between the
 carry-ripple adder's carry-out and the block's carry-in. The selection
 is done by a multiplexer controlled by the block's propagate signal.
 
-![Carry-skip adder architecture](carry_skip_adder.drawio.svg)
+![Carry-skip adder architecture](carry_skip_adder.drawio.png)
 
 ## Complexity
 
@@ -36,7 +36,7 @@ is done by a multiplexer controlled by the block's propagate signal.
         $N/M$ skip muxes and $N/M$ group-propagate AND trees ($O(M)$
         gates each, $O(N)$ in total).
 - **Delay: $O(\sqrt{N})$**
-    - One block ripple ($M$ bits) plus $N/M$ skip mux delays, minimized
+    - Two block ripples of $M$ bits plus $\frac{N}{M}-1$ skip mux delays, minimized
         at $M \approx \sqrt{N}$.
 
 ## How it works
@@ -47,13 +47,13 @@ The block propagate signal is the group-propagate property applied to a
 block:
 
 $$
-P_i = \bigwedge_{j \in \text{block } i} \big(x_j \oplus y_j\big)
+bp_i = \bigwedge_{j \in \text{block } i} \big(x_j \oplus y_j\big)
      = \bigwedge_{j \in \text{block } i} p_j .
 $$
 
 The block propagates its incoming carry if and only if *every* bit
 position in the block propagates. Because propagate is defined with
-XOR, $P_i = 1$ means the block's carry-out equals its carry-in.
+XOR, $bp_i = 1$ means the block's carry-out equals its carry-in.
 
 ### Skip network
 
@@ -61,12 +61,12 @@ The skip network of the adder reduces the length of the carry
 propagation. This skip network provided for each group of $M$ bits makes
 the carry bypass the block.
 
-When $P_i = 1$, the block's carry-ripple adder computes
+When $bp_i = 1$, the block's carry-ripple adder computes
 $c_{out} = c_{in}$, the same value the skip mux selects. Bypassing
 the block therefore does not change the result. It only removes the
 block's internal ripple delay from the carry path.
 
-When $P_i = 0$, some position inside the block generates or kills the
+When $bp_i = 0$, some position inside the block generates or kills the
 carry. In this case, the block's own carry-out is used, and the mux adds
 one multiplexer delay on top of the block's ripple delay.
 
@@ -78,7 +78,7 @@ terminate either in the same block or propagate through other blocks and
 terminate in a further one.
 
 Thus, the carry must ripple through at most two carry-ripple adder
-blocks of $M$ bits and then traverse at most the $N/M$ skip muxes:
+blocks of $M$ bits and then traverse at most $\frac{N}{M}-1$ skip muxes:
 
 $$
 T \;\approx\; M+\frac{N}{M}.
@@ -94,7 +94,7 @@ as $M$ also has to divide $N$ evenly, and a total delay of $O(\sqrt{N})$.
 Two structural observations complete the picture:
 
 - **The propagate trees are off the critical path.** Each
-  $P_i$ is a reduction-AND over $M$ bits computed in parallel from
+  $bp_i$ is a reduction-AND over $M$ bits computed in parallel from
   the operands, concurrently with the ripple chains. It does not
   lengthen the carry path; only the $N/M$ muxes do.
 - **Fixed-size blocks are a simplification.** Variable block sizes
