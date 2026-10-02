@@ -3,13 +3,6 @@
 // Source: https://github.com/davidmallasen/arithmetic_units
 //
 // Full adder
-//
-// Description: Combinational circuit that takes two 1-bit numbers, x
-// and y, and a carry-in bit, cin, and outputs a sum bit, s, and a carry
-// bit, cout.
-//
-// Area: O(1)
-// Delay: O(1)
 
 module full_adder (
   input  logic x,    // First operand
@@ -23,6 +16,7 @@ module full_adder (
   logic g;  // Generate
   logic p_cin_carry;
 
+  // ha1 computes the propagate/generate pair of the operands
   half_adder ha1 (
     .a   (x),
     .b   (y),
@@ -30,6 +24,7 @@ module full_adder (
     .cout(g)
   );
 
+  // ha2 adds the carry-in to the propagate signal
   half_adder ha2 (
     .a   (p),
     .b   (cin),
@@ -37,6 +32,9 @@ module full_adder (
     .cout(p_cin_carry)
   );
 
+  // A carry is produced if the operands generate one (g) or if the
+  // carry-in propagates through. The two events are mutually
+  // exclusive, so a plain OR is sufficient.
   assign cout = g | p_cin_carry;
 
 endmodule

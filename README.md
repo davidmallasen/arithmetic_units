@@ -5,9 +5,13 @@ Source: https://github.com/davidmallasen/arithmetic_units
 -->
 
 # Arithmetic Units
-Collection of arithmetic units written in SystemVerilog.
+
+Collection of arithmetic units written in SystemVerilog. This material is written for people interested in the implementation of computer arithmetic modules. It focuses on readablity and explainability of the code, rather than performance or area optimization.
+
+Documentation for the implemented units is in `docs/`.
 
 ## Setup
+
 Tested in Ubuntu 24.04.
 
 1. Set up the python environment:
@@ -59,6 +63,7 @@ this with:
     environment variable.
 
 ## Running the Tests
+
 The test setup is based on [cocotb](https://www.cocotb.org/), [pytest](https://docs.pytest.org/en/stable/) and [FuseSoC](https://fusesoc.readthedocs.io/). You can find all the tests in the `test` folder.
 
 To run the tests, run:
@@ -104,6 +109,7 @@ make clean
 ~~~
 
 ## Bibliography
+
 [1] M. D. Ercegovac and T. Lang, Digital Arithmetic. 2003. doi: 10.1016/B978-1-55860-798-9.X5000-3.
 [2] J.-M. Muller et al., Handbook of Floating-Point Arithmetic. Cham: Springer International Publishing, 2018. doi: 10.1007/978-3-319-76526-6.
 
@@ -119,7 +125,7 @@ or later, unless specified otherwise. The license is also included in this repos
 the `LICENSES` directory. SPDX-License-Identifier: LGPL-3.0-or-later
 
 This project uses the REUSE tool to manage licenses. For more information, please
-refer to https://reuse.software/. To check the compliance of this repository with the
+refer to <https://reuse.software/>. To check the compliance of this repository with the
 REUSE guidelines, run:
 
 ~~~bash
