@@ -34,7 +34,7 @@ module carry_skip_adder #(
 
       carry_ripple_adder #(
         .N(M)
-      ) rca_i (
+      ) cra_i (
         .x(x[Iend:Istart]),
         .y(y[Iend:Istart]),
         .cin(block_carry[i]),
